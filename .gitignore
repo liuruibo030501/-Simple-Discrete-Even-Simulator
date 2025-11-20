@@ -1,0 +1,12 @@
+# Object files
+*.o
+
+# Executable
+simulator
+
+# Editor files
+*.swp
+*.swo
+
+# Mac stuff
+.DS_Store
