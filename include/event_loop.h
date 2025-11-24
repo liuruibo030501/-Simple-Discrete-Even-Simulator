@@ -7,6 +7,7 @@
 
 // Global simulation time
 extern uint64_t current_sim_time;
+extern struct Event *current_event; // pointer to event being processed
 
 // Run the event loop until no events remain
 void event_loop_run(EventScheduler *scheduler);

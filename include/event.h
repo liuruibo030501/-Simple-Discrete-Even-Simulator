@@ -11,11 +11,10 @@ typedef enum {
     EVENT_CUSTOM//can add more
 } EventType;
 
+// Forward declaration - actual definition in packet.h
 struct Packet;
 
-
 typedef void (*EventTask)(void *context);
-
 
 typedef struct Event {
     uint64_t time;          
@@ -25,14 +24,12 @@ typedef struct Event {
     struct Packet *packet;   
 } Event;
 
-
 //creater
 Event *event_create(uint64_t time,
                     EventType type,
                     EventTask task,
                     void *context,
                     struct Packet *packet);
-
 
 void event_destroy(Event *ev);
 

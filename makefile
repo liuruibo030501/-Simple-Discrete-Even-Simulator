@@ -16,7 +16,8 @@ SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 
 # Compiler flags
-CFLAGS = -Wall -Wextra -I$(INC_DIR)
+CFLAGS = -Wall -Wextra -g -I$(INC_DIR)
+# UPDATE YVETTA: Add -g to print debug information
 
 # Default rule
 all: $(TARGET)
@@ -24,12 +25,16 @@ all: $(TARGET)
 # Link final executable
 $(TARGET): $(OBJS)
 	@mkdir -p $(BUILD_DIR)
-	$(CC) $(OBJS) -o $(TARGET)
+	@echo Linking $(TARGET)
+	$(CC) $(OBJS) -o $(TARGET) -lm
+# UPDATE YVETTA: 1.Added -lm to explicitly link the math library (libm) 2. Added @echo for better build output
 
 # Compile each .c to .o
 $(BUILD_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(BUILD_DIR)
+	@echo Compiling $<
 	$(CC) $(CFLAGS) -c $< -o $@
+#UPDATE YVETTA: Added @echo for better build output
 
 # Clean build files
 clean:
